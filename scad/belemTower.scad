@@ -1,5 +1,5 @@
 include <../p3dLib/lib.scad>
-
+include <smallElements.scad>
 mdl();
             
 module mdl(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
@@ -15,17 +15,18 @@ module mdl(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
         yCube(szx=19, szy=14, szz=7, px=-37/2+19/2, py=37/2+7, pz=3.5);
         
         //on X axis from left to right
-        mLowerTower(px=-37/2, py=37/2, pz=20);
-        mLowerTower(px=-37/2, py=-37/2, pz=20);
+        //mLowerTower(px=-47/2, py=37/2, pz=20);
+        lowerTower(px=-37/2, py=37/2, pz=28, rz=180);
+        lowerTower(px=-37/2, py=-37/2, pz=28, rz=-90);
         
-        mLowerTower(px=10, py=35, pz=20);
-        mLowerTower(px=10, py=-35, pz=20);
+        lowerTower(px=10, py=35, pz=28, rz=180);
+        lowerTower(px=10, py=-35, pz=28, rz=-90);
         
-        mLowerTower(px=78, py=35, pz=20);
-        mLowerTower(px=78, py=-35, pz=20);
+        lowerTower(px=78, py=35, pz=28,rz=120);
+        lowerTower(px=78, py=-35, pz=28, rz=-15);
         
-        mLowerTower(px=95, py=14, pz=20);
-        mLowerTower(px=95, py=-14, pz=20);
+        lowerTower(px=95, py=14, pz=28, rz=45);
+        lowerTower(px=95, py=-14, pz=28, rz=45);
         
         //upper towers
         mUpperTower(px=(32/2), py=(30/2)+1, pz=(39+26+18-7));

@@ -47,7 +47,7 @@ module prongSmall(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
     }//transform
 }//module prongSmall     
 
-module lowerTower(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
+module lowerTower(px=0, py=0, pz=0, rx=0, ry=0, rz=0, isPrinted=false){
     translate([px, py, pz])
     rotate([rx,ry,rz]){
         yCyl(rb=0.25, rt=0, szz=0.3, pz=6.05);
@@ -89,7 +89,7 @@ module lowerTower(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
             yCyl(rb=2.3, rt=2.3, szz=5, pz=-1.6, ry=0, fn=20);
             yCyl(rb=1.8, rt=1.8, szz=6, pz=-1.5, ry=0);
             //big window
-            yCube(szy=1.4, szz=1.8, px=1.4, py=-1.4, rz=-45, pz=-0.7);
+            yCube(szy=1.4, szz=1.7, px=1.4, py=-1.4, rz=-45, pz=-0.7);
             //holes at bottom
             for (k=[0:45:300]){
                 rotate([0,0,k])
@@ -97,9 +97,11 @@ module lowerTower(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
             }//for k
         }//diff
         //support
-        difference(){
-            yCyl(rb=3.3, rt=3.3, szz=0.2, pz=-4.2, ry=0, fn=20);
-            yCyl(rb=2.1, rt=2.1, szz=2, pz=-4.5, ry=0);
-        }//diff -
+        if (isPrinted){
+            difference(){
+                yCyl(rb=3.3, rt=3.3, szz=0.2, pz=-4.2, ry=0, fn=20);
+                yCyl(rb=2.1, rt=2.1, szz=2, pz=-4.5, ry=0);
+            }//diff -
+        }//siPrinted
     }//transform
 }//module lowerTower
