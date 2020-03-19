@@ -1,10 +1,11 @@
 include <../p3dLib/lib.scad>
 
-prongLower();
+prongBigCross();
+prongSmall(px=5);
 
-module prongLower(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
+module prongBigCross(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
     translate([px, py, pz])
-    rotate([rx,ry,rz]){
+    rotate([rx, ry, rz]){
         difference(){
             union(){
                 yCyl(rb=1.8, rt=1.8, szz=2, fn=30);
@@ -33,4 +34,14 @@ module prongLower(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
         }//translate
         
     }//transform
-}//module mdl        
+}//module prongBigCross
+
+module prongSmall(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
+    translate([px, py, pz])
+    rotate([rx,ry,rz]){
+        yCube(szz=2,pz=1);
+        translate([0,0,2])
+        rotate([0,0,45])
+            cylinder(1,1,0,$fn=4);
+    }//transform
+}//module prongSmall     
