@@ -1,6 +1,7 @@
 include <../p3dLib/lib.scad>
 
-prongBigCross();
+lowerTower();
+prongBigCross(px=10);
 prongSmall(px=5);
 
 module prongBigCross(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
@@ -45,3 +46,51 @@ module prongSmall(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
             cylinder(1,1,0,$fn=4);
     }//transform
 }//module prongSmall     
+
+module lowerTower(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
+    translate([px, py, pz])
+    rotate([rx,ry,rz]){
+        yCyl(rb=0.25, rt=0, szz=0.3, pz=6.05);
+        ySphere(r=0.33, px=0, pz=5.7);
+        //4 spheres on top
+        ySphere(r=0.33, px=0.4, pz=4.9);
+        ySphere(r=0.33, px=-0.4, pz=4.9);
+        ySphere(r=0.33, py=0.4, pz=4.9);
+        ySphere(r=0.33, py=-0.4, pz=4.9);
+        
+        //cupolla small
+        yCyl(rb=0.2,rt=0.2, pz=4.9);        
+        yCyl(rb=0.8,rt=0.2, pz=3.9);
+        yCyl(rb=0.9,rt=0.9,pz=3);
+        translate([0,0,3])
+            rotate_extrude(convexity = 10, $fn = 36)
+            translate([0.8, 0, 0])
+            circle(r = 0.3, $fn = 12);
+
+        //cupolla big
+        translate([0,0,1])
+        rotate([0,-90,0])
+        for (i=[0:30:330]){
+            rotate([i,0,0])
+            for (j=[0:9:90]){
+                rotate([0,0,j])
+                    rotate_extrude(convexity = 10, angle=9)
+                        translate([1.8, 0, 0])
+                            circle(r = 0.5*sin(j), $fn = 12);
+            }//for j:0:90
+        }//for i:0:350
+        //main part
+        difference(){
+            yCyl(rb=2.3, rt=2.3, szz=5, pz=-1.8, ry=0, fn=20);
+            yCyl(rb=1.8, rt=1.8, szz=6, pz=-1.6, ry=0);
+            //big window
+            yCube(szy=1.4, szz=1.8, px=1.4, py=1.4, rz=45, pz=-1);
+            //holes at bottom
+            for (k=[0:45:330]){
+                rotate([0,0,k])
+                    yPoly(p=[[0.0,0.6], [1.2,0.2], [1.2,-0.2], [0,-0.6]], szz=1, px=2.4, pz=-4.35, ry=-90);
+            }//for k
+        }//diff
+        
+    }//transform
+}//module lowerTower
