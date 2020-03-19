@@ -1,8 +1,8 @@
 include <../p3dLib/lib.scad>
 
 lowerTower();
-prongBigCross(px=10);
-prongSmall(px=5);
+//prongBigCross(px=10);
+//prongSmall(px=5);
 
 module prongBigCross(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
     translate([px, py, pz])
@@ -72,25 +72,34 @@ module lowerTower(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
         rotate([0,-90,0])
         for (i=[0:30:330]){
             rotate([i,0,0])
-            for (j=[0:9:90]){
+            for (j=[0:5:90]){
                 rotate([0,0,j])
-                    rotate_extrude(convexity = 10, angle=9)
+                    rotate_extrude(convexity = 10, angle=5)
                         translate([1.8, 0, 0])
-                            circle(r = 0.5*sin(j), $fn = 12);
+                            circle(r = 0.5*sin(j), $fn = 16);
             }//for j:0:90
         }//for i:0:350
+        
+        translate([0,0,0.8])
+            rotate_extrude(convexity = 10, $fn = 36)
+            translate([2.2, 0, 0])
+            circle(r = 0.3, $fn = 12);
         //main part
         difference(){
-            yCyl(rb=2.3, rt=2.3, szz=5, pz=-1.8, ry=0, fn=20);
-            yCyl(rb=1.8, rt=1.8, szz=6, pz=-1.6, ry=0);
+            yCyl(rb=2.3, rt=2.3, szz=5, pz=-1.6, ry=0, fn=20);
+            yCyl(rb=1.8, rt=1.8, szz=6, pz=-1.5, ry=0);
             //big window
-            yCube(szy=1.4, szz=1.8, px=1.4, py=1.4, rz=45, pz=-1);
+            yCube(szy=1.4, szz=1.8, px=1.4, py=1.4, rz=45, pz=-0.5);
             //holes at bottom
             for (k=[0:45:330]){
                 rotate([0,0,k])
-                    yPoly(p=[[0.0,0.6], [1.2,0.2], [1.2,-0.2], [0,-0.6]], szz=1, px=2.4, pz=-4.35, ry=-90);
+                    yPoly(p=[[0.0,0.6], [1.2,0.2], [1.2,-0.2], [0,-0.6]], szz=1, px=2.4, pz=-4.15, ry=-90);
             }//for k
         }//diff
-        
+        //support
+        difference(){
+            yCyl(rb=3.3, rt=3.3, szz=0.2, pz=-4.2, ry=0, fn=20);
+            yCyl(rb=2.1, rt=2.1, szz=2, pz=-4.5, ry=0);
+        }//diff -
     }//transform
 }//module lowerTower
