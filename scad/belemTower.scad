@@ -14,7 +14,7 @@ module mdl(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
         }//diff
         yCube(szx=19, szy=14, szz=7, px=-37/2+19/2, py=37/2+7, pz=3.5);
         
-        //on X axis from left to right
+        //on X axis from left to right, ground side
         //mLowerTower(px=-47/2, py=37/2, pz=20);
         lowerTower(px=-37/2, py=37/2, pz=28, rz=180);
         lowerTower(px=-37/2, py=-37/2, pz=28, rz=-90);
@@ -24,9 +24,17 @@ module mdl(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
         
         lowerTower(px=78, py=35, pz=28,rz=120);
         lowerTower(px=78, py=-35, pz=28, rz=-15);
-        
+        //ocean side
         lowerTower(px=95, py=14, pz=28, rz=45);
         lowerTower(px=95, py=-14, pz=28, rz=45);
+        
+        //prongs
+        for (i=[2:6:56]){
+            prongBigCross(px=73-i, py=35, pz=26, rx=90, rz=180);
+        }//for i
+        for (i=[0:6:10]){
+            prongBigCross(px=10, py=29-i, pz=26, rx=90, rz=270);
+        }//for i
         
         //upper towers
         mUpperTower(px=(32/2), py=(30/2)+1, pz=(39+26+18-7));

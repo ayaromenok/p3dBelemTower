@@ -1,12 +1,14 @@
 include <../p3dLib/lib.scad>
 
-lowerTower();
+//lowerTower();
 //prongBigCross(px=10);
 //prongSmall(px=5);
 
 module prongBigCross(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
     translate([px, py, pz])
-    rotate([rx, ry, rz]){
+    rotate([rx, ry, rz])
+    scale([0.9,0.9,0.9])
+    {
         difference(){
             union(){
                 yCyl(rb=1.8, rt=1.8, szz=2, fn=30);
@@ -49,7 +51,9 @@ module prongSmall(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
 
 module lowerTower(px=0, py=0, pz=0, rx=0, ry=0, rz=0, isPrinted=false){
     translate([px, py, pz])
-    rotate([rx,ry,rz]){
+    rotate([rx,ry,rz])
+    scale([1.2,1.2,1.2])
+    {
         yCyl(rb=0.25, rt=0, szz=0.3, pz=6.05);
         ySphere(r=0.33, px=0, pz=5.7);
         //4 spheres on top
