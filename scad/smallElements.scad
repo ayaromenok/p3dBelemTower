@@ -89,7 +89,7 @@ module lowerTower(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
             yCyl(rb=2.3, rt=2.3, szz=5, pz=-1.6, ry=0, fn=20);
             yCyl(rb=1.8, rt=1.8, szz=6, pz=-1.5, ry=0);
             //big window
-            yCube(szy=1.4, szz=1.8, px=1.4, py=-1.4, rz=-45, pz=-0.5);
+            yCube(szy=1.4, szz=1.8, px=1.4, py=-1.4, rz=-45, pz=-0.7);
             //holes at bottom
             for (k=[0:45:300]){
                 rotate([0,0,k])
