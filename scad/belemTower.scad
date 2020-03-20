@@ -29,11 +29,30 @@ module mdl(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
         lowerTower(px=95, py=-14, pz=28, rz=45);
         
         //prongs
+        //Y+
         for (i=[2:6:56]){
             prongBigCross(px=73-i, py=35, pz=26, rx=90, rz=180);
         }//for i
         for (i=[0:6:10]){
             prongBigCross(px=10, py=29-i, pz=26, rx=90, rz=270);
+        }//for i
+        //Y-
+        for (i=[2:6:56]){
+            prongBigCross(px=73-i, py=-35, pz=26, rx=90, rz=0);
+        }//for i
+        for (i=[0:6:10]){
+            prongBigCross(px=10, py=-29+i, pz=26, rx=90, rz=270);
+        }//for i
+        //front
+        for (i=[0:6:15]){
+            prongBigCross(px=95, py=-6+i, pz=26, rx=90, rz=90);
+        }//for i
+        //front 39 degrees
+        for (i=[0:5:12]){
+            prongBigCross(px=82+i*0.82, py=-30+i, pz=26, rx=90, rz=51);
+        }//for i
+        for (i=[0:5:12]){
+            prongBigCross(px=82+i*0.82, py=30-i, pz=26, rx=90, rz=129);
         }//for i
         
         //upper towers
