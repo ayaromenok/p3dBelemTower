@@ -1,4 +1,4 @@
-include <../p3dLib/lib.scad>
+include <../lib/lib.scad>
 
 mdl();
             
